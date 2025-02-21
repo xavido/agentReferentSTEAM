@@ -1,7 +1,8 @@
-googlemaps==4.10.0
-python-dotenv==1.0.0
+streamlit==1.42.1
 requests==2.31.0
-streamlit==1.42.1 
-pandas
-folium
-streamlit_folium
+pandas==2.2.3
+folium==0.19.0
+streamlit-folium==0.24.0
+python-dotenv==1.0.0
+beautifulsoup4==4.13.0
+urllib3==2.3.0
