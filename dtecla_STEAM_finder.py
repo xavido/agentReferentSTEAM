@@ -14,10 +14,20 @@ import time
 load_dotenv()
 
 # Configuración de APIs
-GOOGLE_PLACES_API_KEY =  st.secrets["GOOGLE_PLACES_API_KEY"]
-#LINKEDIN_API_KEY = os.getenv("LINKEDIN_API_KEY", "")
+try:
+    # Primer intentem obtenir la clau dels secrets de Streamlit (per la versió online)
+    GOOGLE_PLACES_API_KEY = st.secrets["GOOGLE_PLACES_API_KEY"]
+except:
+    # Si no funciona, intentem obtenir-la del fitxer .env (per desenvolupament local)
+    GOOGLE_PLACES_API_KEY = os.getenv("GOOGLE_PLACES_API_KEY", "")
+
 if not GOOGLE_PLACES_API_KEY:
-    st.warning("⚠️ No s'ha configurat la clau de l'API de Google Places. Algunes funcionalitats poden no estar disponibles.")
+    st.error("❌ No s'ha trobat la clau de l'API de Google Places. L'aplicació no funcionarà correctament.")
+    st.info("👉 Si estàs executant l'aplicació localment, assegura't de tenir un fitxer .env amb la clau API.")
+    st.info("👉 Si estàs al servidor de Streamlit, configura la clau API als Secrets del projecte.")
+    st.stop()
+
+#LINKEDIN_API_KEY = os.getenv("LINKEDIN_API_KEY", "")
 
 # Tipos de lugares relevantes para STEAM
 TIPOS_VALIDOS = {
